@@ -41,7 +41,7 @@
             .then(response => response.text())
             .then(yamlText => {
                 const yaml = jsyaml.load(yamlText);
-                document.getElementById('yaml').textContent = JSON.stringify(yaml, null, 2);
+                document.getElementById('yaml').textContent = yamlText;
                 document.getElementById('yaml-aaa').textContent = yaml['aaa'].value;
                 document.getElementById('yaml-bbb').textContent = yaml['bbb'].value;
                 document.getElementById('yaml-ccc').textContent = yaml['ccc'].value;
