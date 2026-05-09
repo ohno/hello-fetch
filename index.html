@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>hello-fetch</title>
+  <meta name="description" content="An example of fetching JSON and YAML files.">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+</head>
+<body>
+
+    <button onclick="fetchJSON()">Fetch JSON</button>
+    <p>json:</p>
+    <pre id="json"></pre>
+    <p>aaa: <span id="json-aaa"></span></p>
+    <p>bbb: <span id="json-bbb"></span></p>
+    <p>ccc: <span id="json-ccc"></span></p>
+
+    <button onclick="fetchYAML()">Fetch YAML</button>
+    <p>yaml:</p>
+    <pre id="yaml"></pre>
+    <p>aaa: <span id="yaml-aaa"></span></p>
+    <p>bbb: <span id="yaml-bbb"></span></p>
+    <p>ccc: <span id="yaml-ccc"></span></p>
+
+    <script>
+        function fetchJSON() {
+            fetch('./data.json')
+            .then(response => response.json())
+            .then(json => {
+                document.getElementById('json').textContent = JSON.stringify(json, null, 2);
+                document.getElementById('json-aaa').textContent = json['aaa'].value;
+                document.getElementById('json-bbb').textContent = json['bbb'].value;
+                document.getElementById('json-ccc').textContent = json['ccc'].value;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        function fetchYAML() {
+            fetch('./data.yaml')
+            .then(response => response.text())
+            .then(yamlText => {
+                const yaml = jsyaml.load(yamlText);
+                document.getElementById('yaml').textContent = JSON.stringify(yaml, null, 2);
+                document.getElementById('yaml-aaa').textContent = yaml['aaa'].value;
+                document.getElementById('yaml-bbb').textContent = yaml['bbb'].value;
+                document.getElementById('yaml-ccc').textContent = yaml['ccc'].value;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

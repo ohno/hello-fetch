@@ -1,0 +1,9 @@
+aaa: 
+  value: 111
+  reference: https://example.com/aaa
+bbb: 
+  value: 222
+  reference: https://example.com/bbb
+ccc: 
+  value: 333
+  reference: https://example.com/ccc
